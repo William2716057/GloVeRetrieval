@@ -7,7 +7,8 @@ model = api.load("glove-twitter-25")
 def display_vector_difference():
     word1 = input("Enter the first word: ")
     word2 = input("Enter the second word: ")
-    
+
+ 
     # Check if both words exist in the model's vocabulary
     if word1 in model.key_to_index and word2 in model.key_to_index:
         vector1 = model.get_vector(word1)
@@ -40,4 +41,4 @@ if __name__ == "__main__":
     word1, word2 = display_vector_difference()  # Get words from input
     
     if word1 and word2:  # Only proceed if both words are valid
-        find_analogy(word1, word2, "duit")  # Example: find analogy with "duit"
+        find_analogy(word1, word2, "boy")  # Example: find analogy with "duit"
