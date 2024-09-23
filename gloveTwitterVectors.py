@@ -21,7 +21,18 @@ def display_vector_difference():
         print(f"Difference between '{word1}' and '{word2}' = {difference}")
     else:
         missing_words = [word for word in [word1, word2] if word not in model.key_to_index]
-        print(f"Word(s) not found in the model's vocabulary: {', '.join(missing_words)}")
+        print(f"Not found in the model's vocabulary: {', '.join(missing_words)}")
+
+def find_analogy(word1, word2, word3):
+    
+    if all(word in model.key_to_index for word in [word1, word2, word3]):
+
+        result = model.most_similar(positive=[word3, word2], negative=[word1], topn=1)
+        print(f"{word1} is to {word2}, as {word3} is to {result[0][0]}")
+    else:
+        missing_words = [word for word in [word1, word2, word3] if word not in model.key_to_index]
+        print(f"Not found in the model's vocabulary: {', '.join(missing_words)}")
 
 if __name__ == "__main__":
     display_vector_difference()
+    find_analogy("bahno", "arbus", "duit")
