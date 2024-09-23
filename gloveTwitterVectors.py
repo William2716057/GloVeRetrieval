@@ -19,10 +19,13 @@ def display_vector_difference():
         print(f"Vector for '{word1}' = {vector1}")
         print(f"Vector for '{word2}' = {vector2}")
         print(f"Difference between '{word1}' and '{word2}' = {difference}")
+        
+        return word1, word2
     else:
         missing_words = [word for word in [word1, word2] if word not in model.key_to_index]
         print(f"Not found in the model's vocabulary: {', '.join(missing_words)}")
-
+        return None, None
+        
 def find_analogy(word1, word2, word3):
     
     if all(word in model.key_to_index for word in [word1, word2, word3]):
@@ -34,5 +37,7 @@ def find_analogy(word1, word2, word3):
         print(f"Not found in the model's vocabulary: {', '.join(missing_words)}")
 
 if __name__ == "__main__":
-    display_vector_difference()
-    find_analogy("bahno", "arbus", "duit")
+    word1, word2 = display_vector_difference()  # Get words from input
+    
+    if word1 and word2:  # Only proceed if both words are valid
+        find_analogy(word1, word2, "duit")  # Example: find analogy with "duit"
